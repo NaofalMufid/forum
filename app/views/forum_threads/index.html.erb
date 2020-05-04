@@ -16,9 +16,11 @@
             <div class="content">
                 <%= truncate t.content, length:100 %>
             </div>
+            <% if policy(@thread).pinit? %>
             <div class="action">
                 <%= link_to 'Pin it', pinit_forum_thread_path(t) ,class: 'btn', method: :put %>
             </div>
+            <% end %>
             <div class="count">
                 <%= t.forum_posts_count %> obrolan
             </div>

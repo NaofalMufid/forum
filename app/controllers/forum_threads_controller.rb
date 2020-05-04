@@ -62,6 +62,7 @@ class ForumThreadsController < ApplicationController
 
     def pinit
         @thread = ForumThread.friendly.find(params[:id])
+        authorize @thread
         @thread.pinit!
         redirect_to root_path
     end
