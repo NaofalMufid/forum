@@ -2,7 +2,8 @@ class ForumThreadsController < ApplicationController
     before_action :authenticate_user!, only: [:new, :create]
     def index
         if  params[:search]
-            @threads = ForumThread.where('title like ?', "%#{params[:search]}%")
+            # @threads = ForumThread.where('title like ?', "%#{params[:search]}%") #search on mysql
+            @threads = ForumThread.where('title ilike ?', "%#{params[:search]}%") #search on postgresql
         else
             @threads = ForumThread.order(sticky_order: :asc).order(id: :desc)
         end
